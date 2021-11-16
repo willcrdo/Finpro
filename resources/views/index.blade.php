@@ -186,7 +186,7 @@
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <!-- Portfolio item 7-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal7" onclick="getAll()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal7" onclick="getOthers()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -374,7 +374,7 @@
                                     
                                     <p class="item-intro text-muted">Aqui você encontra profissionais na área de informática e tecnologia</p>
                                     <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="informatica" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-2 justify-content-center">        
+                                        <div id="informatica" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
                                             <script type="text/javascript">
                                                 function getInfo() {
 
@@ -420,12 +420,6 @@
                                                                                     `;
                                                                         
                                                                 }
-                                                                
-/*                                                                 `
-                                                                <div class="col mb-5">
-                                                                ${document.getElementById("informatica").innerHTML = varInfo}
-                                                                </div>
-                                                                `; */
                                                                 document.getElementById("informatica").innerHTML = varInfo;
                                                             }
                                                         }
@@ -457,54 +451,58 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Construção Civil</h2>
                                     <p class="item-intro text-muted">Aqui você encontra profissionais da área de construção civil.</p>
-                                    <div id="construcao">        
-                                        <script type="text/javascript">
-                                            function getConstr() {
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div id="construcao" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                            <script type="text/javascript">
+                                                function getConstr() {
 
-                                                $.ajax({
-                                                    dataType:"json",
-                                                    url:"getConstr.php", 
-                                                    type: "GET",
-                                                    success:function(result){
+                                                    $.ajax({
+                                                        dataType:"json",
+                                                        url:"getConstr.php", 
+                                                        type: "GET",
+                                                        success:function(result){
 
-                                                        if (result.mensagem == "Nenhum prestador encontrado") {
-                                                            `
-                                                            <div>
-                                                                ${document.getElementById("construcao").innerHTML = result.mensagem }
-                                                            </div>
-                                                            `
+                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                                `
+                                                                <div>
+                                                                    ${document.getElementById("construcao").innerHTML = result.mensagem }
+                                                                </div>
+                                                                `
 
-                                                        } else {
+                                                            } else {
 
-                                                            console.log(result.mensagem);
-                                                            retornoObj = JSON.stringify(result);
-                                                            retornoTxt = JSON.parse(retornoObj);
-                                                            cliArray = retornoTxt.body;
-                                                            console.log(cliArray);
-                                                            varConstr = "";
-                                                            
-                                                            for(let i in cliArray) {
-                                                                varConstr += `<div class="col-sm-6">
-                                                                                <div class="card" style="width: 18rem;">
-                                                                                    <div class="card-body">
-                                                                                        <h5 class="card-title">${cliArray[i]['nome']}</h5>
-                                                                                        <p class="card-text">${cliArray[i]['desc_serv']}</p>
-                                                                                        <a href="#" class="btn btn-primary">Ver telefone</a>
+                                                                retornoObj = JSON.stringify(result);
+                                                                retornoTxt = JSON.parse(retornoObj);
+                                                                cliArray = retornoTxt.body;
+                                                                varInfo = "";
+                                                                cont = 0;
+                                                                
+                                                                for(let i in cliArray) {
+                                                                    
+                                                                        varInfo += `<div class="col mb-1">
+                                                                                        <div class="card h-100">
+                                                                                            <div class="card-body p-3">
+                                                                                                <div class="text-center">
+                                                                                                    
+                                                                                                    <h5 class="fw-bolder">${cliArray[i]['nome']}</h5>
+                                                                                                    <p class="card-text">${cliArray[i]['desc_serv']}</p>
+                                                                                                    <p class="card-text">Telefone: ${cliArray[i]['telefone']}</p>
+                                                                                                    <p class="card-text"> Celular: ${cliArray[i]['celular']}</p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            `;
+                                                                                    `;
+                                                                        
+                                                                }
+                                                                document.getElementById("construcao").innerHTML = varInfo;
                                                             }
-                                                            `
-                                                            <div class="row">
-                                                            ${document.getElementById("construcao").innerHTML = varConstr}
-                                                            </div>
-                                                            `;
                                                         }
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -529,42 +527,57 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Automotivo</h2>
                                     <p class="item-intro text-muted">Aqui você encontra os profissionais da área automotiva.</p>
-                                    <div id="automotivo">        
-                                        <script type="text/javascript">
-                                            function getAuto() {
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div id="automotivo" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                            <script type="text/javascript">
+                                                function getAuto() {
 
-                                                $.ajax({
-                                                    dataType:"json",
-                                                    url:"listaPrestadores.php", 
-                                                    type: "GET",
-                                                    success:function(result){
+                                                    $.ajax({
+                                                        dataType:"json",
+                                                        url:"getAuto.php", 
+                                                        type: "GET",
+                                                        success:function(result){
 
-                                                        if (result.memssagem == "Nenhum registro encontrado!!!") {
-                                                            `
-                                                            <div>
-                                                                ${document.getElementById("automotivo").innerHTML = result.memssagem }
-                                                            </div>
-                                                            `
-                                                        } else {
+                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                                `
+                                                                <div>
+                                                                    ${document.getElementById("automotivo").innerHTML = result.mensagem }
+                                                                </div>
+                                                                `
 
-                                                            console.log(result.memssagem);
-                                                            retornoObj = JSON.stringify(result);
-                                                            retornoTxt = JSON.parse(retornoObj);
-                                                            cliArray = retornoTxt.body;
-                                                            console.log(cliArray);
+                                                            } else {
+                                                                retornoObj = JSON.stringify(result);
+                                                                retornoTxt = JSON.parse(retornoObj);
+                                                                cliArray = retornoTxt.body;
+                                                                console.log(cliArray);
+                                                                varInfo = "";
+                                                                
+                                                                for(let i in cliArray) {
+                                                                    
+                                                                        varInfo += `<div class="col mb-1">
+                                                                                        <div class="card h-100">
+                                                                                            <div class="card-body p-3">
+                                                                                                <div class="text-center">
+                                                                                                    
+                                                                                                    <h5 class="fw-bolder">${cliArray[i]['nome']}</h5>
+                                                                                                    <p class="card-text">${cliArray[i]['desc_serv']}</p>
+                                                                                                    <p class="card-text">Telefone: ${cliArray[i]['telefone']}</p>
+                                                                                                    <p class="card-text"> Celular: ${cliArray[i]['celular']}</p>
 
-                                                            
-                                                            for(let i in cliArray) {
-                                                                var div = document.createElement('div'); // criar o elemento
-                                                                div.innerHTML = cliArray[i]['id_cli']; // dar-lhe conteúdo
-                                                                console.log(cliArray[i]);
-                                                                document.body.appendChild(div); // inserir no DOM */
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    `;
+                                                                        
+                                                                }
+                                                                document.getElementById("automotivo").innerHTML = varInfo;
                                                             }
                                                         }
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -589,42 +602,57 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Eletrodomésticos</h2>
                                     <p class="item-intro text-muted">Aqui você encontra os profissionais da área de eletrodomésticos. </p>
-                                    <div id="eletrodomesticos">        
-                                        <script type="text/javascript">
-                                            function getEletrodom() {
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div id="eletrodomesticos" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                            <script type="text/javascript">
+                                                function getEletrodom() {
 
-                                                $.ajax({
-                                                    dataType:"json",
-                                                    url:"listaPrestadores.php", 
-                                                    type: "GET",
-                                                    success:function(result){
+                                                    $.ajax({
+                                                        dataType:"json",
+                                                        url:"getEletrodom.php", 
+                                                        type: "GET",
+                                                        success:function(result){
 
-                                                        if (result.memssagem == "Nenhum registro encontrado!!!") {
-                                                            `
-                                                            <div>
-                                                                ${document.getElementById("eletrodomesticos").innerHTML = result.memssagem }
-                                                            </div>
-                                                            `
-                                                        } else {
+                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                                `
+                                                                <div>
+                                                                    ${document.getElementById("eletrodomesticos").innerHTML = result.mensagem }
+                                                                </div>
+                                                                `
 
-                                                            console.log(result.memssagem);
-                                                            retornoObj = JSON.stringify(result);
-                                                            retornoTxt = JSON.parse(retornoObj);
-                                                            cliArray = retornoTxt.body;
-                                                            console.log(cliArray);
+                                                            } else {
 
-                                                            
-                                                            for(let i in cliArray) {
-                                                                var div = document.createElement('div'); // criar o elemento
-                                                                div.innerHTML = cliArray[i]['id_cli']; // dar-lhe conteúdo
-                                                                console.log(cliArray[i]);
-                                                                document.body.appendChild(div); // inserir no DOM */
+                                                                retornoObj = JSON.stringify(result);
+                                                                retornoTxt = JSON.parse(retornoObj);
+                                                                cliArray = retornoTxt.body;
+                                                                varInfo = "";
+                                                                
+                                                                for(let i in cliArray) {
+                                                                    
+                                                                        varInfo += `<div class="col mb-1">
+                                                                                        <div class="card h-100">
+                                                                                            <div class="card-body p-3">
+                                                                                                <div class="text-center">
+                                                                                                    
+                                                                                                    <h5 class="fw-bolder">${cliArray[i]['nome']}</h5>
+                                                                                                    <p class="card-text">${cliArray[i]['desc_serv']}</p>
+                                                                                                    <p class="card-text">Telefone: ${cliArray[i]['telefone']}</p>
+                                                                                                    <p class="card-text"> Celular: ${cliArray[i]['celular']}</p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    `;
+                                                                        
+                                                                }
+                                                                document.getElementById("eletrodomesticos").innerHTML = varInfo;
                                                             }
                                                         }
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -649,42 +677,57 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Eletroportáteis</h2>
                                     <p class="item-intro text-muted">Aqui você encontra os profissionais da área de eletroportáteis.</p>
-                                    <div id="eletroportateis">        
-                                        <script type="text/javascript">
-                                            function getEletropor() {
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div id="eletroportateis" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                            <script type="text/javascript">
+                                                function getEletropor() {
 
-                                                $.ajax({
-                                                    dataType:"json",
-                                                    url:"listaPrestadores.php", 
-                                                    type: "GET",
-                                                    success:function(result){
+                                                    $.ajax({
+                                                        dataType:"json",
+                                                        url:"getEletropor.php", 
+                                                        type: "GET",
+                                                        success:function(result){
 
-                                                        if (result.memssagem == "Nenhum registro encontrado!!!") {
-                                                            `
-                                                            <div>
-                                                                ${document.getElementById("eletroportateis").innerHTML = result.memssagem }
-                                                            </div>
-                                                            `
-                                                        } else {
+                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                                `
+                                                                <div>
+                                                                    ${document.getElementById("eletroportateis").innerHTML = result.mensagem }
+                                                                </div>
+                                                                `
 
-                                                            console.log(result.memssagem);
-                                                            retornoObj = JSON.stringify(result);
-                                                            retornoTxt = JSON.parse(retornoObj);
-                                                            cliArray = retornoTxt.body;
-                                                            console.log(cliArray);
+                                                            } else {
 
-                                                            
-                                                            for(let i in cliArray) {
-                                                                var div = document.createElement('div'); // criar o elemento
-                                                                div.innerHTML = cliArray[i]['id_cli']; // dar-lhe conteúdo
-                                                                console.log(cliArray[i]);
-                                                                document.body.appendChild(div); // inserir no DOM */
+                                                                retornoObj = JSON.stringify(result);
+                                                                retornoTxt = JSON.parse(retornoObj);
+                                                                cliArray = retornoTxt.body;
+                                                                varInfo = "";
+                                                                
+                                                                for(let i in cliArray) {
+                                                                    
+                                                                        varInfo += `<div class="col mb-1">
+                                                                                        <div class="card h-100">
+                                                                                            <div class="card-body p-3">
+                                                                                                <div class="text-center">
+                                                                                                    
+                                                                                                    <h5 class="fw-bolder">${cliArray[i]['nome']}</h5>
+                                                                                                    <p class="card-text">${cliArray[i]['desc_serv']}</p>
+                                                                                                    <p class="card-text">Telefone: ${cliArray[i]['telefone']}</p>
+                                                                                                    <p class="card-text"> Celular: ${cliArray[i]['celular']}</p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    `;
+                                                                        
+                                                                }
+                                                                document.getElementById("eletroportateis").innerHTML = varInfo;
                                                             }
                                                         }
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -709,42 +752,57 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Transportes</h2>
                                     <p class="item-intro text-muted">Aqui você encontra os profissionais da área de transportes.</p>
-                                    <div id="transportes">        
-                                        <script type="text/javascript">
-                                            function getTrans() {
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div id="transportes" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                            <script type="text/javascript">
+                                                function getTrans() {
 
-                                                $.ajax({
-                                                    dataType:"json",
-                                                    url:"listaPrestadores.php", 
-                                                    type: "GET",
-                                                    success:function(result){
+                                                    $.ajax({
+                                                        dataType:"json",
+                                                        url:"getTrans.php", 
+                                                        type: "GET",
+                                                        success:function(result){
 
-                                                        if (result.memssagem == "Nenhum registro encontrado!!!") {
-                                                            `
-                                                            <div>
-                                                                ${document.getElementById("transportes").innerHTML = result.memssagem }
-                                                            </div>
-                                                            `
-                                                        } else {
+                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                                `
+                                                                <div>
+                                                                    ${document.getElementById("transportes").innerHTML = result.mensagem }
+                                                                </div>
+                                                                `
 
-                                                            console.log(result.memssagem);
-                                                            retornoObj = JSON.stringify(result);
-                                                            retornoTxt = JSON.parse(retornoObj);
-                                                            cliArray = retornoTxt.body;
-                                                            console.log(cliArray);
+                                                            } else {
 
-                                                            
-                                                            for(let i in cliArray) {
-                                                                var div = document.createElement('div'); // criar o elemento
-                                                                div.innerHTML = cliArray[i]['id_cli']; // dar-lhe conteúdo
-                                                                console.log(cliArray[i]);
-                                                                document.body.appendChild(div); // inserir no DOM */
+                                                                retornoObj = JSON.stringify(result);
+                                                                retornoTxt = JSON.parse(retornoObj);
+                                                                cliArray = retornoTxt.body;
+                                                                varInfo = "";
+                                                                
+                                                                for(let i in cliArray) {
+                                                                    
+                                                                        varInfo += `<div class="col mb-1">
+                                                                                        <div class="card h-100">
+                                                                                            <div class="card-body p-3">
+                                                                                                <div class="text-center">
+                                                                                                    
+                                                                                                    <h5 class="fw-bolder">${cliArray[i]['nome']}</h5>
+                                                                                                    <p class="card-text">${cliArray[i]['desc_serv']}</p>
+                                                                                                    <p class="card-text">Telefone: ${cliArray[i]['telefone']}</p>
+                                                                                                    <p class="card-text"> Celular: ${cliArray[i]['celular']}</p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    `;
+                                                                        
+                                                                }
+                                                                document.getElementById("transportes").innerHTML = varInfo;
                                                             }
                                                         }
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -769,49 +827,57 @@
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Não encontrou?</h2>
                                     <p class="item-intro text-muted">Pesquise entre os demais profissionais cadastrados.</p>
-                                    <div id="outros">        
-                                        <script type="text/javascript">
-                                            function getOthers() {
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div id="outros" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                            <script type="text/javascript">
+                                                function getOthers() {
 
-                                                $.ajax({
-                                                    dataType:"json",
-                                                    url:"listaPrestadores.php", 
-                                                    type: "GET",
-                                                    success:function(result){
+                                                    $.ajax({
+                                                        dataType:"json",
+                                                        url:"getOthers.php", 
+                                                        type: "GET",
+                                                        success:function(result){
 
-                                                        if (result.memssagem == "Nenhum registro encontrado!!!") {
-                                                            `
-                                                            <div>
-                                                                ${document.getElementById("outros").innerHTML = result.memssagem }
-                                                            </div>
-                                                            `
-                                                        } else {
-
-                                                            console.log(result.memssagem);
-                                                            retornoObj = JSON.stringify(result);
-                                                            retornoTxt = JSON.parse(retornoObj);
-                                                            cliArray = retornoTxt.body;
-                                                            console.log(cliArray);
-
-                                                            
-                                                            for(let i in cliArray) {
-                                                                //document.getElementById("automotivo").innerHTML = cliArray[i]['id_cli'];
-                                                                var div = document.createElement('div'); // criar o elemento
-                                                                div.innerHTML = cliArray[i]['id_cli']; // dar-lhe conteúdo
-                                                                console.log(cliArray[i]);
-                                                                document.body.appendChild(div); // inserir no DOM */
-
-                                                                /* `
+                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                                `
                                                                 <div>
-                                                                    ${document.getElementById("automotivo").innerHTML = cliArray[i]['id_cli']}
+                                                                    ${document.getElementById("outros").innerHTML = result.mensagem }
                                                                 </div>
-                                                                ` */
+                                                                `
+
+                                                            } else {
+
+                                                                retornoObj = JSON.stringify(result);
+                                                                retornoTxt = JSON.parse(retornoObj);
+                                                                cliArray = retornoTxt.body;
+                                                                varInfo = "";
+                                                                
+                                                                for(let i in cliArray) {
+                                                                    
+                                                                        varInfo += `<div class="col mb-1">
+                                                                                        <div class="card h-100">
+                                                                                            <div class="card-body p-3">
+                                                                                                <div class="text-center">
+                                                                                                    
+                                                                                                    <h5 class="fw-bolder">${cliArray[i]['nome']}</h5>
+                                                                                                    <p class="card-text">${cliArray[i]['desc_serv']}</p>
+                                                                                                    <p class="card-text">Telefone: ${cliArray[i]['telefone']}</p>
+                                                                                                    <p class="card-text"> Celular: ${cliArray[i]['celular']}</p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    `;
+                                                                        
+                                                                }
+                                                                document.getElementById("outros").innerHTML = varInfo;
                                                             }
                                                         }
-                                                    }
-                                                });
-                                            }
-                                        </script>
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -894,7 +960,7 @@
                                     <p class="item-intro text-muted">E forneça os melhores serviços da sua região</p>
                                     <div class="container px-5 my-5">
                                         <form id="CadastroPresForm" novalidate>
-<!--                                         <form id="CadastroPresForm" method="POST" action="cadastroPrestador.php" novalidate> -->
+<!--                                         <form id="CadastroPresForm" method="POST" action="cadastroPrestador2.php" novalidate> -->
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="nome" type="text" placeholder="Nome" value="" required/>
                                                 <label for="nome">Nome</label>
@@ -944,32 +1010,42 @@
                                                 <div class="text-center text-danger mb-3">Error sending message!</div>
                                             </div>
                                             <div class="d-grid">
-                                                <button class="btn btn-primary btn-lg" id="submitPres" value="submitPres" type="submit">Cadastrar</button>
+                                                <input class="btn btn-primary btn-lg" id="submitPres" value="Cadastrar" type="submit">
                                                 <!-- <button class="btn btn-primary btn-lg" id="submitPres" type="submit">Cadastrar</button> -->
                                             </div>
-                                            <script>
-                                                $("#submitPres").click(function(event){
-                
-                                                    //EVITAR QUE O FORMULÁRIO SEJA SUBMETIDO ANTES DO ENVIO PARA A API
-                                                    event.preventDefault();
+                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+                                                /* function cadPres() { */
+                                                    console.log("entrou na função")
 
-                                                    //ENVIA PARA A API
-                                                    $.ajax({
-                                                        //METODO DE ENVIO
-                                                        type: "POST",
-                                                        //URL PARA QUAL OS DADOS SERÃO ENVIADOS
-                                                        url: "/cadastroPrestador.php",
-                                                        //DADOS QUE SERÃO ENVIADOS
-                                                        data: $("#CadastroPresForm").serialize(),
-                                                        //TIPOS DE DADOS QUE O AJAX TRATA
-                                                        dataType: "json",
-                                                        //CASO DÊ TUDO CERTO NO ENVIO PARA A API
-                                                        success: function(){
-                                                            //SUBMETE O FORMULÁRIO PARA A ACTION DEFINIDA NO CABEÇALHO
-                                                            $("#CadastroPresForm").submit();
-                                                        }
+                                                    $( "submitPres" ).on( "submit", function( event ) {
+                                                        event.preventDefault();
+                                                        console.log( $( this ).serialize() );
                                                     });
-                                                })
+                                                    
+                                                    $("#submitPres").click(function(event){
+                    
+                                                        //EVITAR QUE O FORMULÁRIO SEJA SUBMETIDO ANTES DO ENVIO PARA A API
+                                                        event.preventDefault();
+
+                                                        //ENVIA PARA A API
+                                                        $.ajax({
+                                                            //METODO DE ENVIO
+                                                            type: "POST",
+                                                            //URL PARA QUAL OS DADOS SERÃO ENVIADOS
+                                                            url: "/cadastroPrestador.php",
+                                                            //DADOS QUE SERÃO ENVIADOS
+                                                            data: $("#CadastroPresForm").serialize(),
+                                                            //TIPOS DE DADOS QUE O AJAX TRATA
+                                                            dataType: "json",
+                                                            //CASO DÊ TUDO CERTO NO ENVIO PARA A API
+                                                            success: function(){
+                                                                //SUBMETE O FORMULÁRIO PARA A ACTION DEFINIDA NO CABEÇALHO
+                                                                $("#CadastroPresForm").submit();
+                                                                console.log("deu certo")
+                                                            }
+                                                        });
+                                                    })
+                                                /* } */
                                             </script>
                                         </form>
                                     </div>

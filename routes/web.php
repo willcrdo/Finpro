@@ -73,8 +73,8 @@ Route::get('/getTrans.php', function () {
     return view('getTrans');
 });
 
-Route::get('/getAll.php', function () {
-    return view('getAll');
+Route::get('/getOthers.php', function () {
+    return view('getOthers');
 });
 
 Route::get('/atualiza.php', function () {
@@ -95,6 +95,9 @@ Route::post('/cadastroPrestador.php', function () {
     return view('cadastroPrestador');
 });
 
+Route::post('/cadastroPrestador2.php', function () {
+    return view('cadastroPrestador2');
+});
 
 Route::get('/apaga.php', function () {
     return view('apaga');

@@ -15,6 +15,8 @@ class VerifyCsrfToken extends Middleware
         //
 	'cria.php',
 	'cadastroCliente.php',
-        'cadastroPrestador.php'
+        'cadastroPrestador.php',
+        'cadastroPrestador2.php'
+
     ];
 }

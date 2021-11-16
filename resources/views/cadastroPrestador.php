@@ -10,7 +10,6 @@
 	$db = $database->getConnection();
 	$item = new Prestador($db);
 	$data = json_decode(file_get_contents("php://input"));
-	echo $data;
 	$item->nome = $data->nome;
 	$item->telefone = $data->telefone;
 	$item->celular = $data->celular;
