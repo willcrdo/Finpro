@@ -13,8 +13,11 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
+	'redirect.php',
+	'index.php',
 	'cria.php',
 	'cadastroCliente.php',
+	'cadastroCliente2.php',
         'cadastroPrestador.php',
         'cadastroPrestador2.php'
 

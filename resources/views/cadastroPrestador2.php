@@ -17,10 +17,10 @@
 //	$item->mail = $data->mail;
 //	$item->desc_serv = $data->desc_serv;
 //      $item->id_categoria = $data->id_categoria;
-        $item->nome = $_POST['nome'];
-        $item->telefone = $_POST['telefone'];
-        $item->celular = $_POST['celular'];
-        $item->mail = $_POST['mail'];
+        $item->nome = $_POST['nomePres'];
+        $item->telefone = $_POST['telefonePres'];
+        $item->celular = $_POST['celularPres'];
+        $item->mail = $_POST['mailPres'];
         $item->desc_serv = $_POST['desc_serv'];
         $item->id_categoria = $_POST['id_categoria'];
 

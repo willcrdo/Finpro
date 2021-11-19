@@ -19,31 +19,17 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-Route::get('/lista.php', function () {
-    return view('lista');
+Route::post('/redirect.php', function () {
+    return view('redirect');
 });
-
-
-Route::get('/leiatudo.php', function () {
-    return view('leiatudo');
-});
-
-
-Route::post('/leiaitem.php', function () {
-    return view('leiaitem');
-});
-
-
-Route::post('/cria.php', function () {
-    return view('cria');
-});
-
 
 Route::post('/cadastroCliente.php', function () {
     return view('cadastroCliente');
 });
 
+Route::post('/cadastroCliente2.php', function () {
+    return view('cadastroCliente2');
+});
 
 Route::get('/getCliente.php', function () {
     return view('getCliente');

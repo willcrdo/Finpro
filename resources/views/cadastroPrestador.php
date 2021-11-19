@@ -10,10 +10,10 @@
 	$db = $database->getConnection();
 	$item = new Prestador($db);
 	$data = json_decode(file_get_contents("php://input"));
-	$item->nome = $data->nome;
-	$item->telefone = $data->telefone;
-	$item->celular = $data->celular;
-	$item->mail = $data->mail;
+	$item->nome = $data->nomePres;
+	$item->telefone = $data->telefonePres;
+	$item->celular = $data->celularPres;
+	$item->mail = $data->mailPres;
 	$item->desc_serv = $data->desc_serv;
         $item->id_categoria = $data->id_categoria;
 	if($item->cadastroPrestador()){
